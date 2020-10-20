@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MultiTenantTemplate.Model.Core
 {
     public class Tenant
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Identifier { get; set; }
 

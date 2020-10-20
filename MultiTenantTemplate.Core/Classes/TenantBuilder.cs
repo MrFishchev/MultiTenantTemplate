@@ -20,8 +20,8 @@ namespace MultiTenantTemplate.Core.Classes
 
         public TenantBuilder(IServiceCollection services)
         {
-            _services.AddTransient<TenantAccessService<T>>();
             _services = services;
+            _services.AddTransient<TenantAccessService<T>>();
         }
 
         #endregion
