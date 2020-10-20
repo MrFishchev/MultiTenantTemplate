@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MultiTenantTemplate.Core.Extensions;
+using MultiTenantTemplate.Core.Stores;
+using MultiTenantTemplate.Core.Strategies;
 
 namespace MultiTenantTemplate
 {
@@ -16,6 +19,9 @@ namespace MultiTenantTemplate
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMultiTenancy()
+                .WithResolutionStrategy<HostResolutionStrategy>()
+                .WithStore<InMemoryTenantStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
