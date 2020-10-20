@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MultiTenantTemplate.Accessors;
+using MultiTenantTemplate.Accessors.IAccessors;
 using MultiTenantTemplate.Core.Extensions;
 using MultiTenantTemplate.Core.Stores;
 using MultiTenantTemplate.Core.Strategies;
+using MultiTenantTemplate.Model.Core;
 
 namespace MultiTenantTemplate
 {
@@ -24,6 +27,7 @@ namespace MultiTenantTemplate
             services.AddMultiTenancy()
                 .WithResolutionStrategy<HostResolutionStrategy>()
                 .WithStore<InMemoryTenantStore>();
+            services.AddSingleton<ITenantAccessor<Tenant>, TenantAccessor<Tenant>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
