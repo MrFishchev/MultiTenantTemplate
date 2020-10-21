@@ -4,6 +4,9 @@ using MultiTenantTemplate.Core.Strategies.IStrategies;
 
 namespace MultiTenantTemplate.Core.Strategies
 {
+    /// <summary>
+    /// Resolving tenant identifier by host name (ex. wwww.hostname.com)
+    /// </summary>
     public class HostResolutionStrategy : ITenantResolutionStrategy
     {
         #region Fields
@@ -29,7 +32,9 @@ namespace MultiTenantTemplate.Core.Strategies
         /// <returns></returns>
         public Task<string> GetTenantIdentifierAsync()
         {
-            return Task.FromResult(_httpContextAccessor.HttpContext.Request.Host.Host);
+            return _httpContextAccessor.HttpContext != null
+                ? Task.FromResult(_httpContextAccessor.HttpContext.Request.Host.Host)
+                : Task.FromResult(string.Empty);
         }
 
         #endregion

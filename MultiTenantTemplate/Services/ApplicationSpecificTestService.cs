@@ -8,7 +8,7 @@ namespace MultiTenantTemplate.Services
 
         public ApplicationSpecificTestService()
         {
-            Id = new Guid();
+            Id = Guid.NewGuid();
         }
     }
 }

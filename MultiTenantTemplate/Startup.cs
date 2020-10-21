@@ -26,7 +26,7 @@ namespace MultiTenantTemplate
             services.AddSingleton<ITenantAccessor<Tenant>, TenantAccessor<Tenant>>();
 
             services.AddMultiTenancy()
-                .WithResolutionStrategy<HostResolutionStrategy>()
+                .WithResolutionStrategy<RouteResolutionStrategy>()
                 .WithStore<InMemoryTenantStore>();
         }
 
@@ -57,7 +57,9 @@ namespace MultiTenantTemplate
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{tenant}/{action}");
             });
         }
     }
