@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MultiTenantTemplate.Core.Classes;
+using MultiTenantTemplate.Model.Core;
 
 namespace MultiTenantTemplate
 {
@@ -18,9 +20,8 @@ namespace MultiTenantTemplate
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
+                .UseServiceProviderFactory(
+                    new MultiTenantServiceProviderFactory<Tenant>(Startup.ConfigureMultiTenantServices));
     }
 }

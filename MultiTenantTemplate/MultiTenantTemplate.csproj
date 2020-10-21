@@ -8,4 +8,8 @@
     <ProjectReference Include="..\MultiTenantTemplate.Core\MultiTenantTemplate.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\IServices\" />
+  </ItemGroup>
+
 </Project>

@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MultiTenantTemplate.Accessors;
@@ -13,6 +9,7 @@ using MultiTenantTemplate.Core.Extensions;
 using MultiTenantTemplate.Core.Stores;
 using MultiTenantTemplate.Core.Strategies;
 using MultiTenantTemplate.Model.Core;
+using MultiTenantTemplate.Services;
 
 namespace MultiTenantTemplate
 {
@@ -27,7 +24,16 @@ namespace MultiTenantTemplate
             services.AddMultiTenancy()
                 .WithResolutionStrategy<HostResolutionStrategy>()
                 .WithStore<InMemoryTenantStore>();
+
+            //single instance available to all all tenants
+            services.AddSingleton(new ApplicationSpecificTestService());
             services.AddSingleton<ITenantAccessor<Tenant>, TenantAccessor<Tenant>>();
+        }
+
+        public static void ConfigureMultiTenantServices(Tenant t, ContainerBuilder c)
+        {
+            //there are instances that will be scoped to the current tenant, one instance per tenant
+            c.RegisterInstance(new TenantSpecificTestService()).SingleInstance();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,7 +44,9 @@ namespace MultiTenantTemplate
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMultiTenancy();
+            app.UseMultiTenancy()
+                .UseMultiTenantContainer();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

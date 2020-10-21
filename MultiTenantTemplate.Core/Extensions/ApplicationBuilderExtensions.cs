@@ -26,5 +26,23 @@ namespace MultiTenantTemplate.Core.Extensions
         /// <returns></returns>
         public static IApplicationBuilder UseMultiTenancy(this IApplicationBuilder builder)
             => builder.UseMiddleware<TenantMiddleware<Tenant>>();
+
+        /// <summary>
+        /// Use custom multi-tenant container
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseMultiTenantContainer<T>(this IApplicationBuilder builder)
+            where T : Tenant => builder.UseMiddleware<MultiTenantContainerMiddleware<T>>();
+
+        /// <summary>
+        /// Use custom multi-tenant container with default Tenant
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseMultiTenantContainer(this IApplicationBuilder builder)
+            => builder.UseMiddleware<MultiTenantContainerMiddleware<Tenant>>();
     }
 }
