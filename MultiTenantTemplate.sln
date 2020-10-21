@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantTemplate", "MultiTenantTemplate\MultiTenantTemplate.csproj", "{31A4F635-A651-48A3-BEC8-B89BDCCAB0E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantTemplate", "MultiTenantTemplate\MultiTenantTemplate.csproj", "{31A4F635-A651-48A3-BEC8-B89BDCCAB0E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantTemplate.Model", "MultiTenantTemplate.Model\MultiTenantTemplate.Model.csproj", "{54822BD7-6304-4A02-8642-C2303D86B218}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantTemplate.Model", "MultiTenantTemplate.Model\MultiTenantTemplate.Model.csproj", "{54822BD7-6304-4A02-8642-C2303D86B218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantTemplate.Common", "MultiTenantTemplate.Common\MultiTenantTemplate.Common.csproj", "{2B825F70-BF4C-48AA-ABF3-1B09D9C92ED5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantTemplate.Common", "MultiTenantTemplate.Common\MultiTenantTemplate.Common.csproj", "{2B825F70-BF4C-48AA-ABF3-1B09D9C92ED5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C731D104-6402-43EB-BFE2-4C35C1F07DEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantTemplate.Tests", "MultiTenantTemplate.Tests\MultiTenantTemplate.Tests.csproj", "{C057F324-A50C-4389-8BAD-325B04D3C315}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantTemplate.Tests", "MultiTenantTemplate.Tests\MultiTenantTemplate.Tests.csproj", "{C057F324-A50C-4389-8BAD-325B04D3C315}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantTemplate.Common.Tests", "MultiTenantTemplate.Common.Tests\MultiTenantTemplate.Common.Tests.csproj", "{874F4CC8-0266-4E91-A130-43354DDBCD65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantTemplate.Common.Tests", "MultiTenantTemplate.Common.Tests\MultiTenantTemplate.Common.Tests.csproj", "{874F4CC8-0266-4E91-A130-43354DDBCD65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantTemplate.Core", "MultiTenantTemplate.Core\MultiTenantTemplate.Core.csproj", "{04118978-08B3-4EDD-B11F-1B12440FEF52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenantTemplate.Core", "MultiTenantTemplate.Core\MultiTenantTemplate.Core.csproj", "{04118978-08B3-4EDD-B11F-1B12440FEF52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenantTemplate.Core.Tests", "MultiTenantTemplate.Core.Tests\MultiTenantTemplate.Core.Tests.csproj", "{7337C3C4-D307-4601-92E8-50B953602546}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{04118978-08B3-4EDD-B11F-1B12440FEF52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04118978-08B3-4EDD-B11F-1B12440FEF52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04118978-08B3-4EDD-B11F-1B12440FEF52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7337C3C4-D307-4601-92E8-50B953602546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7337C3C4-D307-4601-92E8-50B953602546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7337C3C4-D307-4601-92E8-50B953602546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7337C3C4-D307-4601-92E8-50B953602546}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C057F324-A50C-4389-8BAD-325B04D3C315} = {C731D104-6402-43EB-BFE2-4C35C1F07DEC}
 		{874F4CC8-0266-4E91-A130-43354DDBCD65} = {C731D104-6402-43EB-BFE2-4C35C1F07DEC}
+		{7337C3C4-D307-4601-92E8-50B953602546} = {C731D104-6402-43EB-BFE2-4C35C1F07DEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFE751BC-4D3F-4BCD-9DA9-55E1132CC76E}
