@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MultiTenantTemplate.Classes;
 using MultiTenantTemplate.Core.Accessors;
 using MultiTenantTemplate.Core.Accessors.IAccessors;
 using MultiTenantTemplate.Core.Extensions;
@@ -36,13 +37,12 @@ namespace MultiTenantTemplate
         {
             var tenantServices = new ServiceCollection();
 
-            //TODO AddAuthenticationCore?
             var builder = tenantServices.AddAuthentication(o =>
             {
-                o.DefaultScheme = $"{t.Id}--{IdentityConstants.ApplicationScheme}";
-            }).AddCookie($"{t.Id}--{IdentityConstants.ApplicationScheme}", o =>
+                o.DefaultScheme = TenantCookieAuthScheme.GetScheme(t.Id);
+            }).AddCookie(TenantCookieAuthScheme.GetScheme(t.Id), o =>
             {
-                //o.LoginPath...
+                o.Cookie.Name = "TenantSpecificAuthentication";
             });
 
             //builder.AddFacebook()...
