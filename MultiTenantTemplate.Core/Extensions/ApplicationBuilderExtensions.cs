@@ -44,5 +44,13 @@ namespace MultiTenantTemplate.Core.Extensions
         /// <returns></returns>
         public static IApplicationBuilder UseMultiTenantContainer(this IApplicationBuilder builder)
             => builder.UseMiddleware<MultiTenantContainerMiddleware<Tenant>>();
+
+        /// <summary>
+        /// Use the Tenant Auth to process the authentication handlers
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseMultiTenantAuthentication(this IApplicationBuilder builder)
+            => builder.UseMiddleware<TenantAuthMiddleware>();
     }
 }

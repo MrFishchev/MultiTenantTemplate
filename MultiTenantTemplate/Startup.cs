@@ -1,6 +1,8 @@
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MultiTenantTemplate.Core.Accessors;
@@ -32,6 +34,19 @@ namespace MultiTenantTemplate
 
         public static void ConfigureMultiTenantServices(Tenant t, ContainerBuilder c)
         {
+            var tenantServices = new ServiceCollection();
+
+            //TODO AddAuthenticationCore?
+            var builder = tenantServices.AddAuthentication(o =>
+            {
+                o.DefaultScheme = $"{t.Id}--{IdentityConstants.ApplicationScheme}";
+            }).AddCookie($"{t.Id}--{IdentityConstants.ApplicationScheme}", o =>
+            {
+                //o.LoginPath...
+            });
+
+            //builder.AddFacebook()...
+
             //there are instances that will be scoped to the current tenant, one instance per tenant
             c.RegisterInstance(new TenantSpecificTestService()).SingleInstance();
 
@@ -40,6 +55,8 @@ namespace MultiTenantTemplate
                 options.ConsentCookie.Name = $"{tenant.Id}-consent";
                 options.CheckConsentNeeded = context => false;
             });
+
+            c.Populate(tenantServices);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +68,8 @@ namespace MultiTenantTemplate
             }
 
             app.UseMultiTenancy()
-                .UseMultiTenantContainer();
+                .UseMultiTenantContainer()
+                .UseMultiTenantAuthentication();
 
             app.UseRouting();
 
